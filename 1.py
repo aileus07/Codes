@@ -1,29 +1,64 @@
-import csv
+def c_words():
+    lc=uc=0
+    with open(r"Files\File Handling\Data Base\practice.txt", "r") as f:
+        data = f.read()
+        for ch in data:
+            if ch.isalpha() and ch.isupper():
+                uc += 1
+            if ch.isalpha() and ch.islower():
+                lc += 1
+    print(lc,uc)
+# c_words()
 
-
-def add_Player():
-    with open('player.csv','a',newline = '') as f:
-        while True:
-            w = csv.writer(f,delimiter='|')
-            name = input('Enter the name of the player: ')
-            sport = input('Enter the sport: ')
-            age = int(input('Enter the age: '))
-            p_id = int(input('Enter the player ID: '))
+def vowel_count():
+    vowel = const = 0
+    with open(r'Files\File Handling\Data Base\practice.txt', 'r') as f:
+        data = f.read()
+        for ch in data:
+            if ch in 'aeiouAEIOU':
+                vowel += 1
+            else:
+                const += 1   
             
-            deatils = [p_id,name,age,sport]
-            w.writerow(deatils)
-            
-            bool = input('Do you want to enter more data(Y/n): ')
-            if bool.lower() == 'y':
-                continue
-            elif bool.lower() == 'n':
-                break
-# add_Player()            
+    print(vowel,const)
+# vowel_count()
 
-def show_Player():
-    with open('player.csv', 'r') as f:
-        reader = csv.reader(f)
-        data = list(reader)
-        for i in data:
-            print(" ".join(i))
-show_Player()
+def test():
+    with open(r'Files\File Handling\Data Base\practice.txt', 'r') as f:
+        data = f.readlines()
+        # print(type(data))
+        for i in range(len(data)):
+            line = data[i].rstrip()
+            line = line.split()
+            if line[0].lower() == 'you':
+                print(' | '.join(line))
+            
+            
+            # else:
+            #     print('no')
+# test()
+# with open(r'Files\File Handling\Data Base\practice.txt', 'a') as f:
+#     names = ['Alice', 'Bob', 'Charlie', 'Diana']
+    # f.writelines(names)
+    
+    
+
+def capitalize_sentence():
+    with open(r'Files\File Handling\Data Base\practice.txt', 'r') as f1:
+        data = f1.read()
+        str = ''
+        capNext = True
+        for ch in data:
+            if capNext and ch.isalpha():
+                str += ch.upper()
+                capNext = False
+            else:
+                str += ch
+            if ch == '.':
+                capNext = True
+            
+        print(str)
+    
+    
+    
+capitalize_sentence()
